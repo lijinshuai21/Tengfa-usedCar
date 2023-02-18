@@ -1,7 +1,7 @@
 // 点击事件
 let head = document.querySelectorAll('.head p');
 let arr = [
-    './home.html?username='
+    './index.html?username='
     ,'./used_car.html?username='
     ,'./newcar.html?username='
     ,'./sellingcar.html?username='

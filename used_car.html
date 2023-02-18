@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./home.css">
+    <link rel="stylesheet" href="./used-multiplexing.css">
+    <title>Document</title>
+    <style>
+        /* body{
+            overflow: hidden;
+        } */
+    
+
+        .box {
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+        .more1-sort,.carbrand,.carmores,.carType,.carprice{
+            width: 100vw;
+            background-color: #f5f7fe;
+            z-index: 6;
+            transition: all .3s linear;
+            position: absolute;
+        }
+        .box .more1-sort {
+            top: -100px;
+            overflow-y: auto;
+        }
+
+        .box .carbrand {
+            height: 78vh;
+            top: -78vh;
+            overflow: hidden;
+            overflow-y: auto;
+            list-style: none;
+        }
+
+        .box .carprice {
+            top: 0;
+        }
+
+        .box .carType {
+            top: 0;
+        }
+
+        .box .carmores {
+            top: 0;
+        }
+
+        .mask {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            top: 0px;
+            bottom: 10px;
+            left: 0;
+            background: #000;
+            opacity: 0.5;
+            display: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <!-- 固定头 -->
+        <header>
+            <div class="headerfirst">
+                <div class="logo">
+                    <img style="margin: 4vw 2.8vw 0 2.66667vw;"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAAAaCAMAAADfYMFDAAACl1BMVEUAAAAAAP8A//8AgP+AgP9VVf9Vqv9AgP8zZv8zmf9Jbf9AgP9Vcf9GdP9Gi/9AgP9Odv9Oif9Jf/9Ed/9HgP9Dhv9NgP9Jhv9GgP9RgP9Oev9Ohf9KgP9Hev9Ff/9Of/9Me/9Ge/9Mf/9Ke/9KhP9IgP9GfP9Ng/9LgP9JfP9Jg/9HgP9MfP9Mg/9KgP9NgP9LfP9LgP9Kff9Kgv9If/9Mff9Mgv9KgP9MgP9Kff9Jf/9LgP9Jgv9If/9Hff9Lff9Jff9MgP9JgP9Mgf9LgP9Kfv9Kgf9Lgf9KgP9Lgf9KgP9LgP9Kfv9Kgf9JgP9Mgf9MgP9Lfv9KgP9Jgf9LgP9Kfv9Jgf9Lf/9Kfv9Kgf9JgP9Lfv9Kfv9LgP9Lfv9KgP9Mgf9LgP9Kf/9Lfv9LgP9JgP9Jfv9Lfv9KgP9Kfv9Lf/9Kfv9KgP9Jgf9Lgf9LgP9Kf/9KgP9Jfv9Kfv9KgP9LgP9Kf/9JgP9LgP9Lf/9LgP9KgP9LgP9Kf/9Jf/9Lf/9Kf/9Kf/9Lf/9Kf/9KgP9LgP9Kf/9KgP9KgP9Kf/9KgP9Kf/9Kf/9Jf/9KgP9Kf/9KgP9Lf/9KgP9Jf/9Kf/9KgP9Lf/9Kf/9Jf/9Kf/9KgP9Kf/9Jf/9JgP9KgP9Kf/9KgP9KgP9Lf/9Kf/9Kf/9Kf/9KgP9KgP9Kf/9Kf/9KgP9Kf/9JgP9LgP9Kf/9KgP9Kf/9Kfv9Kf/9Lf/9KgP9Kf/9KgP9Kf/9Kf/9Kf/9Kf/9Kf/9KgP9Jf/9KgP9Kf/9Kf/9Kfv9Kf/9Kf/9Kfv9Kf/9Kf/9Kf/9Kf/9Kfv9Kf/9Jf/9Kfv9Kf/9Kf/9Kfv9Kf/9KgP9Kf/9Jfv9JgP9KgP9Kf/9Kf/9Kf/9Jfv9Kfv9KgP9Kf//dTMT0AAAA3HRSTlMAAQECAgMDBAUFBwgJCwsMDQ0ODxITFBUWFhcXGBkaGhsdHh8fICEhIiMjJCUlJigpLC0tLi8vMDY3ODo7PD09P0BCQ0RFRUdIS0xOT09QUVRVVldYWVtcXV1eX2FiY2RlZmhpamxtbW5vcHFyc3N0eHx9f4CCg4SEhYWGiImLjI6Rk5WXmpucnp+io6anqKmqq7Cxs7S1tri5ur2/wMDBwcLDx8nKzM7P0NLT1NTX2Nna2tvc3d7f4OHi4+Tl5ufp6uvt7u7v8PHy8vP09PX29/j5+vr6+/z9/v7+3xsBfgAAAvVJREFUOMuNlOlfjFEUx49GIrsGyTLKruxRSqgsFUaWISmRaGxpbFnSqCRZkyVryd6iUKNpKNlSEkkm8fwxzrnP0jOPyaffi7PNvd/7zLkLgPt7Xm8uuMLwMJSX5jUqBfwpcQTSzCKUBiaWmt82HgalxnCiCmAcuRwPsqecP6F9wY9JwrAY4Ci69snCvH71Vqs1QyK0tpH1nV6N9ut6inP3kL06ko1+huEBcKpBd0ta+hxmdc4iYU7/d2gjsjmlImmsN0UzYAW5tRIhlFKtRGDLRHdCOIRBs9FYSIU0o6jUP5hmKwhefqTlVLnMQr8hRCjlOtW3gQIhaoEFrT6KKYEq+XwcRjvB/Ucb5XvBHfx3wEMk6KtItAT3uUqp010h8AqiNALsiBHyr3xBG6MObUJ3d7RarfZ5hdFTz0E2m9cWuUqhRYpOBjfSSejDZow3YVzoKgLUzXbb8NiWELNSp9Ot7iXMGYWJzlck7OC6QogOqlXIohIJxfh7k8VSZTZXVr40mSrKy+kbuUciYZ5LORFClEs8EQF+lMXaNHAba77NzeKipyZ3KJUqZ8XhmfQJLjm4fSVufGXERyw1qBUE0NxAbWUj/KmSKAAGUIuzwKcV3U12453y6HeDtJuVZS2MwL4svDtpN4XLhD5spiQAIJF8OhZUWexP9gRFJyGvkxP1AMNS9A65VDzRre9F8g2zQElwa7NPYNc7gSKXEvYIlZH9GSI7k7N5wqSdctVLhDSMWoay0N0kXctwoUmsY4MZwVAkUzzUiITe1PZL/PAJxwTAj2Bxn2IxqwaoUN6spA4Ce/aWAizee+a57Gm4ZtB6D+sBkI7JdYfkdnSbDDIFqj6IhDsYmFXgZO9YZwIUoEtZSMmvsfxXnedvfi3VbmM+5TcG+0Ei1J2cv8skI9TRa5hB7/g+4fR871jBik8QHKd77cETmu4lB9IhUAUeud/IE5z1KM2auO1xPkJjNHpR8TpPKmzYsk4bQLP0YdMc5TfDbe4Sre9fu/hjl2fYkpkAAAAASUVORK5CYII="
+                        alt="">
+                    <img style="margin: -0.26667vw 3.06667vw 2.66667vw 2.93333vw;"
+                        src="https://m.tf2sc.cn/assets/img/zhenshicheyuan.bb99b2a6.jpg" alt="">
+                </div>
+                <div class="head">
+                    <p>首页</p>
+                    <p>二手车</p>
+                    <p>新车</p>
+                    <p>卖车</p>
+                    <p>腾发服务</p>
+                    <!-- <p><a href="./home.html">首页</a></p>
+                    <p><a href="./used_car.html">二手车</a></p>
+                    <p><a href="./newcar.html">新车</a></p>
+                    <p><a href="./sellingcar.html">卖车</a></p>
+                    <p><a href="./customer.html">腾发服务</a></p> -->
+                </div>
+
+            </div>
+            <!-- 定位，搜索 -->
+            <div class="headertwo">
+                <div class="country">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAA6lBMVEUAAAAAAAD///+qqqqqqqq2trafn7+qqqq5ubmqqr+qqraurrWoqLSurrSqqrWqqrWsrLWoqLKqqrOpqbaoq7Krq7aoq7KqqrSqqrOpqbKpqbSprLSpqbOpqbOrq7SqqrOpqbWpqbKqqrOqqrSpqbOpqbOpq7Srq7SqqrOpq7Srq7SoqrSpq7OoqrOpq7Spq7Spq7SqqrOpqrKqqrSqq7SpqrOqq7OpqrSqqrOpqrSpqrKpqbOpqrKpqbKpqrOpqrOpqrOqqrOpqrSpqrKpqrOpqrOpqrOpqrSpqrOqq7OpqrOpqrOpqrOpqrM4V1ROAAAATXRSTlMAAQEDBgcICQsMFSYsLC0wNDU2O0lJTE5UWV9fZWhqbG50dXuDhoiIiouOn6Gio6Snq6ywsLW2t9HS1dnf4uLj5ezw9vf5+vr7+/z9/t6VsRUAAADuSURBVBgZrcFpNwJhGAbg25RBJSlLC6YF2VosYSgtqFT3//875pn3nTEz5RwfXBf+gZlv2sOh3cybWFLsUesVEWa2GNAyERB7YshjDD/qjKjDl5xQzDu1WmdOMUnC06AYZOHIDiga0OIjOmYZuHZndIziUHIU99AeKHJQChRVaFWKAhSLogKtQmFBKVHcQrujKEHZo5im4UpPKfahJBYU3RQcqS7FIgHtma5xu1xuj+my4TnhEguezTdG9LfgO2DEIQLOGHKOoLVrBtwYCDEu6bsyEHX0TtfHMVbYfqHjdQcrrZ9+fl1s4DfpDP7sG8cwW6DtXcQ+AAAAAElFTkSuQmCC"
+                        alt="">
+                    <div class="Oncountry">全国</div>
+                </div>
+                <div class="search">
+                    <input data-v-643653ae="" type="text" placeholder="搜索品牌、车型" class="newCar_searchRight">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAMAAAANmfvwAAAA81BMVEUAAACAgICqqqqfn5+Ojo6kpKSZmZmfn5+UlJSenp6ZmZmTk5OXl5eXl5eenp6ampqXl5ecnJyampqampqXl5eZmZmampqampqampqYmJibm5uYmJiampqYmJibm5uYmJiYmJibm5uampqZmZmZmZmYmJiampqampqampqZmZmZmZmampqampqZmZmZmZmZmZmZmZmZmZmZmZmampqampqZmZmYmJiampqZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmYmJiZmZmZmZmZmZmYmJiZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZnfQTEDAAAAUHRSTlMAAgMICQ4PEBMVGRobICIrLCw1OkBGSUxOT09SU1RUV15eYmRpbXJ5fn+CkpqbnaKqsra4u7zJzNLT3N3e3+Hk5+jp6+zt8vP29vf5+vv9/p8vDUQAAAEkSURBVBgZvcFpVwFRAAbgl7LTbSS0iLJUZC+ypbmSjGHe//9rOjmdunN1pm+eB/t3eNEczJejx0oCf/MVp/y2rsfwh2CHtNrl89Pr2gs5S2FH8JlOPYot/80r7Sw0vg6XefyI9/luwK1IJw9FeMgeXA6nfIBL0uEVVJe0onBrsQtVk21oMlwFoBiwDM3BhidQzHkGnckcFEueQjdhAYoRr6GzmIbiiTVoDPIIigpf/HC75xiqxJo3cAm+sQqXOl/jUDW4iMAlNmM/jF+3ZAmalM1hEt+CDdI2oMu+02llDgAYdzPSphTQGT2SG3NikVyUjiWlwI6r7opfxtUIIExKgV2Bk1whfYQtISkFvAlJKeBNSEoBb0LSDMGbMD+i+Ecoin36BDo9MiemW6C3AAAAAElFTkSuQmCC"
+                        alt="">
+                </div>
+            </div>
+        </header>
+        <div class="middle">
+            <div class="middle-more">
+                <div class="middle-more1" data-a="1">排序<span class="up-more"></span></div>
+                <div class="middle-more1" value="1">品牌<span class="up-more"></span></div>
+                <div class="middle-more1" value="1">价格<span class="up-more"></span></div>
+                <div class="middle-more1" value="1">车型<span class="up-more"></span></div>
+                <div class="middle-more1" value="1">更多<span class="up-more"></span></div>
+            </div>
+        </div>
+        <div class="mask">
+
+            </div>
+        <div class="box">
+            <!-- 遮罩层 -->
+            
+            <div class="more1-sort">
+                <p>默认排序</p>
+                <p>最新发布</p>
+                <p>价格最高</p>
+                <p>价格最低</p>
+            </div>
+            <div class="carbrand">
+
+            </div>
+            <div class="carprice">
+
+            </div>
+            <div class="carType">
+
+            </div>
+            <div class="carmores">
+
+            </div>
+        </div>
+        <div class="middle-type">
+            <span class="car-type">腾发自营</span>
+            <span class="car-type">车主直营</span>
+            <span class="car-type">限时特惠</span>
+            <span class="car-type">严选好车</span>
+        </div>
+
+        <!-- 渲染页面 -->
+        <div class="used-Car-list">
+
+        </div>
+    </main>
+    <footer>
+        <div class="footer">
+            <div class="footer-item app">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAMAAACfWMssAAAAqFBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8j1z1tAAAAN3RSTlMAAgUHCAoNFSorMDE7PUFCQ09UVVtrc3d/hZeYmZqeoKmqr7e+ycrU2eDm5+jp6uzy9PX2+Pz+9bVIkgAAATpJREFUSMft1ttugkAUBdBRQCgFRbCtiLbgDYVevO///7MWnBmhgcmQvtSE/WQ2WUrGI0dC2rS5w1iTiCX09VtvD3tid0YhG5XWyhzYPohgAKQxzQ5wqFtkb/MukhGSLr87wONu9XYRyggxf21QmLmlRp6FsgJSR8SyAk6py+W2Jw07R3xqtHkFhvKfmOJkXgttDdjycHTBVy61JTBvcqpPV5m5hdIE5vJR7EiIQ9+gGQMuYfL0IXTERyn0VDIpdkTfFN2M96P0OFWEPw/V8Vhcs3ih8++eABW3arq8ctQGhzMrPRN06a/DLDd+7QDsB2wAXvIBcIExa+wdQumR8wCDVzGiFt4HTPkK6DM4YE03qYU/SydhS+eQLx0H2LMmBSbSa04tjf3Zql2Qwe/FqvshrwKr/evR5u/5Bt/cXFLOH3yJAAAAAElFTkSuQmCC"
+                    alt="">
+                <p>APP</p>
+            </div>
+            <div class="footer-item wx-app">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAMAAACfWMssAAABNVBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9vAW14AAAAZnRSTlMAAQMGBwgNEBESFRgcHiEiIyQmJygsMDQ5PD5BQ0RGSExQVFVWV1hZYWJjZGxtcnN0dXZ8fYOEiI6PkJKUlZueo6SstLa3u7y9vsrL1dbX2Nrb3d/h5ebn6Ons7u/y9fb3+vv8/f5BywR9AAAB5ElEQVRIx+2VW3PScBDFT6g21lsQqxEVaQsS74r1giKKKFWpGhK11kpto+b3/T+CDxhCtUkoMz44w3nK7s6Z7Jz/2V1phhn+b8yX6612u1Uvzx+Elat0A34j6FZyk/KW++xBf3kimtkB8JuObVm20/QBOmY2z/KAXsmIYqPUAzwri5ffgEHNGE8ZtQFsZDBND9zCn9mCC156tx1wF/5OL7jQSdUTBoX9CoUBpGib60MtDpdeb75rHB9+16Cf/J5V6MW6rIYA285QoR5UEoldKI2CYghffAivSZJK0E30Z4Af//ApPJtT8SPBOUkyfIIk35ahGUcvYFFSfpt1SVITygnEOjhx9AQuSVIDzkiSA/UEYgtsSdL5FUlFWJOkW3BZkmxoJRDbYEmS8T68b0gvhw28gSVJsqCdQbRh65h0aodNU7q6u2tmEKNWb8JDSVqFR5LsO8poNRLnOtyWpEMf2ImNmyJO9Bwnf/JKkvRg3IEpzzEywHO4IkmP4cZoKlMMMLLc0U/8uDenC9/gYlRLs5wqkcnPbsHXfgjrkQXTTR6P1aILgHciKqWP1dggH7779vvnxpGocDp9kPeuDuMAq2P6ZSVryvUo5fdfyPl/dwKmPzqSctXxM1ed+MxNf1hnmCETvwDAk5WKTdUqLQAAAABJRU5ErkJggg=="
+                    alt="">
+                <p>小程序</p>
+            </div>
+            <div class="footer-item tel">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAMAAACfWMssAAACr1BMVEUAAAD///+AgID///+qqqr///+/v7+ZmZnMzMyqqqrV1dW2trafn5+/v7+qqqrGxsazs7PMzMyioqK5ubmqqqq/v7+xsbHExMS2tra7u7uvr6+/v7+0tLTDw8PS0tLh4eG4uLjGxsaurq68vLzJycnX19ezs7O/v7/Z2dm2tra5ubm8vLzIyMi/v7/V1dXW1tbOzs7Y2NjGxsbQ0NDj4+PR0dHU1NTW1tbPz8/f39/g4ODa2trp6enT09Pb29vc3Nzr6+vs7Oza2trg4ODh4eHi4uLo6Ojk5OTp6enf39/q6urv7+/m5ubw8PDn5+ft7e3x8fHt7e3p6enu7u7y8vL29vbq6urz8/P39/fr6+v39/fr6+vv7+/4+Pjw8PD4+Pjy8vL19fX4+Pjy8vLy8vLz8/P29vb5+fn5+fn29vb5+fn5+fn09PT09PT6+vr19fX19fX6+vr19fX6+vr6+vr9/f36+vr4+Pj7+/v7+/v5+fn9/f35+fn5+fn5+fn7+/v7+/v9/f37+/v7+/v5+fn5+fn7+/v7+/v5+fn6+vr7+/v6+vr7+/v6+vr7+/v9/f38/Pz6+vr8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz9/f38/Pz9/f38/Pz9/f39/f36+vr8/Pz8/Pz+/v7+/v78/Pz+/v7+/v7////+/v7+/v7+/v7+/v7+/v7+/v78/Pz+/v7+/v7+/v7+/v7////9/f3////+/v7+/v7+/v7+/v7+/v7////+/v7////+/v7////////+/v7+/v7+/v7////+/v7+/v7////+/v7+/v7////////////+/v7////+/v7////+/v7////+/v7////+/v7////////////////////+/v7////////+/v7////////////////////////////GOWv4AAAA5HRSTlMAAQICAwMEBQUGBgcICAkJCgoLCwwMDQ0ODxAQERERERISExMTExQUFBUWFxcYGBkaGhsbGxweHyAgISIiIyMkJigpKSssLC8vMDAwMjM1ODg5Ozw8PD0+P0BAQUFERUVNTU1OUVJSUlNWV1tcX2FiZGVqa25vcXNzdHZ5ent9fX6AgoOFh4mKi4yMjY6QkZOUlZWXmJmanJ6goKKiqKmsrbGztLS2ubq9vsHExsfIysvMzc/P0dPU1tfZ2trb29zd3t/f4OHh4uPj5Obo6Ovr7Ozt8PHx8vP09vf3+Pn5+vv8/f5Wbqp5AAAEJUlEQVRIx92W54PUVBTFCZPZZCY7ScYkw846aphgshEVFVGxK4LYe8fesXex94aCvfcuFsSGvawNRVRUFF1E2Tl/iPfmZTK7s5mdkW/6Puyn/c259+Wdc++YMf/dIzXOWkH/Co7/d6w4nZMxlclkZFmmvzHbEUeYLGe7+DAr0E44EiNGUVVV6erKMtqWFJxMnJrL5fP5XE4l1Q5IwWUJ07QCHy2fU+pkOy4TcQXdME3T0AsaicodgTJzumlafAjVIs3RScEpzFn2pIsfnLOpbZlEcp+jgSxIDUZc6YRlAJYe71hmQYuLbSOoagXizvgbfFaf7hRZMtsWFILOYatQmzfz9hpW7EmSeZIcHWTBPAn2fQRcVa26NwAvONSlGjXZGuRKI8FrgKc8OsFrwJEW19oOzNKVGlbfD/htuuf7vncScLdlFNo0SXcqKj0buMXzgyDwgh/xcqPJVvasg/ZjqM30gzAM/K2/x1u2Ke4107CnlALSx3AWYonnh2E45bIlwHz6ICzJNmnhzwR8D4s9Ejywn77kx1NL/AbYJsTKdatIqeAi9BO4CX2TP+6bWh5nFw22SWRPtvYIZyc9PoeBjf3wGODFaW6l3FOyimwTje2Z6k/6HPTCCbwJmOWHRwGP+F6ltzzOsdkmOtmTSk7xZ/ziDOtU4EY/nPgl/prluZXenp6SY1nFyJ6xP4eT4slpujXhZ3wYBuH5wKc7Vd11e8uElhzSJeE0Z0tJkw8DZ/rhRs8Ar0ypuhVCyz2T9tq85Ah/Kk02k5Ja9xnEOxODcId36X4me65bqYy/bQC11y9cP/ZntgmMazWdJ4Er6Ans8RWwYBt67dVbI3vi/YMdfrrNbokluw1rl5X4/VAi9/0GeHv3wJ++Cr/c8eyfwMBsO46EZlC8AXsO8MF2RO79GbD83PBe4BLfm0GFDBxeFDYbKzWlXJQB65SeBl6dTOSuC6nC/kEs3SLwPfdKYJFjxFkyPK6imKNit1wMvLQVkZvdtYbQ2jkhg5UngP3r/kwJVs6rnb+mX5/G7jri8S/ePCsMfQZvBo7VRyoOI2d8Anx3YmTokL3J3EEr8dMGaRkkRcVym0Ru/wYw+NCOHocIYZ673nHLgYtEIDRnUCwpyAn3U3cr5u7mVoly3W3voW4ftdJzVqqTVK1u2qexl9csuO7kA/Y75YFf6Y7udHQhOCK7pGTUad00CvquXobG+Xa2qYsXlzJLpCFDkkStDc97frXAPr+8z9S7tcjLadMrGeeKqjFK7NEXXHv9pYc4phiXMSe1XCB4oOdpMus8ZA0jTgCOu1ajXRqyC/BUj8a6xqGjdiWc1HrZyUQobR+8SOREUmVT87F5vYpQXngURVUUEaxtNyYpWbGIzTbSuINFK9npMvWTDI/O98gh86bTRXRtFtD/1/kHzsItxFGYh0gAAAAASUVORK5CYII="
+                    alt="">
+                <p>电话</p>
+            </div>
+            <div class="footer-item backTop">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAMAAACfWMssAAACClBMVEUAAAD///+AgID///+qqqr///+/v7+ZmZnMzMyqqqrV1dW2tra/v7+qqqrGxsazs7PMzMy5ubmqqqq/v7+xsbHExMS2trbIyMi7u7uvr6+/v7+0tLTDw8PS0tK4uLjV1dWurq68vLzJycmzs7O/v7+2trbCwsK5ubno6OixsbG8vLzIyMje3t61tbXf39/r6+vY2Nji4uLZ2dnk5OTi4uLj4+Pj4+Pe3t7f39/m5ubb29vb29vn5+fz8/PW1tbc3Nzj4+Po6Oju7u7e3t7p6enu7u7e3t7r6+vw8PDx8fHs7Ozx8fHp6ent7e3p6en39/fr6+vv7+/s7Ozp6en09PTu7u7v7+/5+fn29vb5+fn29vb5+fnw8PD29vb29vbz8/P29vb8/Pzx8fH5+fn39/f8/Pz6+vr39/f6+vr09PT39/f09PT09PT19fX19fXy8vL4+Pj6+vr4+Pj4+Pj7+/v7+/v7+/v5+fn9/f38/Pz9/f38/Pz9/f38/Pz9/f39/f39/f38/Pz8/Pz8/Pz7+/v8/Pz+/v78/Pz+/v7+/v7+/v7+/v7+/v7+/v7+/v79/f3+/v7+/v7+/v7////+/v7+/v7////+/v7////+/v7+/v7////+/v7+/v7////+/v7////////+/v7+/v7////////+/v7////////+/v7////////////////Kj4kTAAAArXRSTlMAAQICAwMEBQUGBgcICQkKCgsMDA0NDg4PEBARERESEhMTExQUFRUWFhcXFxcYGBkaGhscIyQlJygoKisrKywsLS0tLi4uLzM0NTY2OTk6PkBBREdHTVBQUVJTU1RUVVdXV1hZWlxdXl5fX2BhYmNkbm5wcXp7fX6YmZmampukp6irrK2urrCxsbq7wMHFyMzQ0dTU1dbW19fY3Nzd4uTl5ufr7O7x8vL09/f6+5Z4NKsAAARPSURBVEjHzdbpexNVFAdgak3bLDPTNJNhkpSYmISYUqlaUFGLGyi44G4BFaxQUdxIJbUasbhQCEUNFG2axKVqW7X5/Y+ec2dJMkmqFj94nn6YTPo+59wl594tW/7D6GqJf4NuMuOfYRt1d3ffLIIebPw3jBUJV48Il8CW3cAZjElvH0UvPzXQzo6YSyC320PhdgvsYtpBmuk4GymP1+sT4fUyFlmNpG0dpSMmlCTJsqLIsiQJy9RM2tlRLklR/GaQJttJ2q6X0vlkUgMBVQ0GVTUQGPArMmV197aTdUdFKqzuODp97vz5c9NH71SZclJbOhPaLhA+fbkGM2qXT4cDddmcssFRmYGTFRZrV69cubrGT5WTqijXlg7XY+QbvUT/e336UDKRpL9DH12nj5dGB0TOnmZpwj4Pu0eqwNLxeCKZSqXT6VQykTi+BFT3cbWePicUzu0lt38ZyO+IJ4hlMkMZoon4jk+B5f0keVWEbIAuLlT2j1axPhWNJSjb0N6vf3qDKMnoh+uojvp5mD2uOqTUIiEVOnARmIpE48lUeujBReDPV2/PpJOJWGQKuMjDFCmtWs1KvT7FfwL4ODzICTN7F3lCf39pSKSM5IETfsXnbayVoFgKSdlawdJ2Skjw/kVjGVdeMOD2JVS28ihpSerQmFLZ/xZwLBQZjMWT9y1aG+C3ZwUMHQNO0Sg9Rq0NkCstYEEPhSnlveT+uAB8WwZ+eToeG4yE9AUUrFotaM6psrOGnK5TynvIrb38AXDhMdpEPz8ejYR1PYfaTsWaVxOaQzwMPKHrevju74Ffn0+/D3yVeZT2ww8Ph0O6/iRw2B6kDXnX9OewqhHc/R3w41PJ1HvAl+nUQySre+i1vopcv7F7mqHcn0dR07Rd5Mr7aC0ZphKxB0iWdtEXReT75bZwFvP0/XNnsmd28wy9C3wRj0Yje+jFM/TFPGbbQolhkEPTeIqi7xCkaaHhaRq/ZdhSqpgcKpW7hWrQ8NvA5xHByNHLIj5xTo65HDmssLPoKYIW43cryDmWw9oA48AB1Yygpr/JUDgBDwDjjg1gbbnhGs7WoWZC06lnURt2bjlrkAVcUwN2rY6M11Bo2eTmz0qmfz3SAQaOAJOy82fVZXaOYBmlbaITk7OhmJxtJZSDZu/oqrcAnldOOQHMBExnTI4hVXUGmJA4ocvRc8yuOgdkeWJ4IV8HPtON9VCzwFxDZ3W2R680UsF6VuTT9bu+WX5RFzKYXUdlxOdtbY/1hjxG7XHmFgHN0LRbqc7lsTYNufEIkMbop1t6pS417bUSnQJjUpsjoPnQGaFxYiF3kIiu6QdzC/RxbqT9odN4zPHclrlLrRbn54ur/FSeaD4gOx6sUnCyUD/mCpNBSudpf7C2HOXybeO5/OxsPjc+TCd556O89fJAVoTk2/jy0Oa64rWvK30bXVc2f0Ha/JVs85fAzV87b+CiewNX6/9x/AWkaVth5zD8ngAAAABJRU5ErkJggg=="
+                    alt="">
+                <p>回到顶部</p>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="./header.js"></script>
+
+<script>
+
+    // 二手车
+    let used_Car_list = document.getElementsByClassName('used-Car-list')[0];
+    fetch(`https://api.tf2sc.cn/api/tfcar/car/list?page=1&sort=`, {
+        headers: {
+            PlatformType: 'h5'
+        }
+    }).then(res => res.json()).then(res => {
+        res.data.content.forEach(item => {
+            let date = format(item.dateOfRegistration, 'yyyy年MM月')
+            used_Car_list.innerHTML += `<div class="used-Car-list-item">
+                        <img class="item-img" src="${item.cover}" alt="">
+                        <p class="ellipsis">${item.saleType == 0 ? '<span class="used-car-item-type">腾发自营</span>' : item.saleType == 1 ? '<span class="used-car-item-type" style="background: linear-gradient(90deg, rgb(95, 152, 246) 0%, rgb(46, 104, 235) 100%);">车主直营</span>' : item.saleType == 2 ? '<span class="used-car-item-type" style="background: linear-gradient(90deg, rgb(255, 23, 102) 0%, rgb(255, 42, 35) 100%);">限时特惠</span>' : '<span class="used-car-item-type" style="background: linear-gradient(90deg, rgb(0, 145, 0) 0%, rgb(0, 117, 0) 100%);">严选好车</span>'}<span class="item-title">${item.carName}</span></p>
+                        <p class="item-mileage">${date} / ${item.mileage} 万公里</p>
+                        <p class="item-price">${item.currentPrice} 万</p>
+                    </div>`
+        })
+    })
+
+
+
+    // 中部筛选点击事件
+    let middle_more = document.querySelectorAll('.middle-more1')
+    let moreitem = document.querySelectorAll('.box div')
+    let up_more = document.querySelectorAll('.up-more')
+    let mask = document.querySelector('.mask')
+    let arrtop = ['-100px','-78vh','-200px','200px','200px']
+    let flag = true;
+    console.log(up_more[0]);
+    middle_more.forEach(function(item,i) {
+        item.onclick = function() {
+            arrtop.forEach(function(item,i) {
+                moreitem[i].style.top = arrtop[i];
+                mask.style.display = 'none'; 
+                document.body.style.overflow='auto';//手机版设置这个。
+                up_more[i].style.transform = 'rotate(0deg)';
+                up_more[i].style.top = '5px';
+                console.log(111);
+            })
+            if(flag){
+                
+                moreitem[i].style.top = 0;
+                mask.style.display = 'block'; 
+                document.body.style.overflow='hidden';//手机版设置这个。
+                up_more[i].style.transform = 'rotate(180deg)';
+                up_more[i].style.top = '0px';
+                flag = false;
+            }else{
+                moreitem[i].style.top = arrtop[i];
+                mask.style.display = 'none'; 
+                document.body.style.overflow='auto';//手机版设置这个。
+                up_more[i].style.transform = 'rotate(0deg)';
+                up_more[i].style.top = '5px';
+                flag = true;
+            }
+        }
+    })
+
+
+    // middle_more[0].onclick = function () {
+    //     middle_more.forEach(item =>{
+
+    //     })
+    //     if(flag){
+    //         // more1_sort.style.display = 'block';
+    //         more1_sort.style.top = 0;
+    //     mask.style.display = 'block'; 
+    //     document.body.style.overflow='hidden';//手机版设置这个。
+    //         up_more[0].style.transform = 'rotate(180deg)';
+    //         up_more[0].style.top = '0px';
+    //     flag = false;
+    //     }else{
+    //         // more1_sort.style.display = 'none';
+    //         more1_sort.style.top = '-100px';
+    //         mask.style.display = 'none'; 
+    //         document.body.style.overflow='auto';//手机版设置这个。
+    //         up_more[0].style.transform = 'rotate(0deg)';
+    //         up_more[0].style.top = '5px';
+    //         flag = true;
+    //     }
+    // }
+
+
+
+    // 车型
+    // let news = document.getElementsByClassName('news-list')[0];
+
+    fetch(`https://api.tf2sc.cn/api/tfcar/car/brand300`, {
+        headers: {
+            PlatformType: 'h5'
+        }
+    }).then(res => res.json()).then(res => {
+        console.log(res);
+        let arr = [];
+
+        res.data.content.forEach(item => {
+            let index = arr.findIndex(it => it.type == item.brand.charAt(0))
+            if (index == -1) {
+                arr.push({
+                    type: item.brand.charAt(0),
+                    lists: [item]
+                })
+            } else {
+                arr[index].lists.push(item)
+            }
+        })
+        console.log(arr);
+        let brand = document.getElementsByClassName('carbrand')[0];
+        arr.forEach(item => {
+                brand.innerHTML += `<li>${item.type}</li>${typeList(item.lists)}`
+            })
+        })
+
+        function typeList(items) {
+            var res = '';
+            items.forEach(item => {
+                res += `<li>${item.brand.substr(4)}</li>`
+            })
+
+            return res;
+        }
+
+
+    // 时间转化
+    var format = function (time, format) {
+        var t = new Date(time);
+        var tf = function (i) { return (i < 10 ? '0' : '') + i };
+        return format.replace(/yyyy|MM|dd|HH|mm|ss/g, function (a) {
+            switch (a) {
+                case 'yyyy':
+                    return tf(t.getFullYear());
+                    break;
+                case 'MM':
+                    return tf(t.getMonth() + 1);
+                    break;
+                case 'mm':
+                    return tf(t.getMinutes());
+                    break;
+                case 'dd':
+                    return tf(t.getDate());
+                    break;
+                case 'HH':
+                    return tf(t.getHours());
+                    break;
+                case 'ss':
+                    return tf(t.getSeconds());
+                    break;
+            }
+        })
+    }
+
+
+
+
+</script>
+
+</html>

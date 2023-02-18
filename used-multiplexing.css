@@ -1,0 +1,50 @@
+.middle {
+    position: sticky;
+    width: 100%;
+    height: 8vw;
+    background-color: #ffff;
+    z-index: 33;
+    padding: 3vw 0;
+}
+.middle .middle-more {
+    width: 90vw;
+    margin: 0 auto;
+    font-size: 3.46667vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 向下小箭头 */
+.up-more {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    display: inline-block;
+    transform: rotate(0deg);
+    border: 1.3vw solid;
+    border-color: #dcdee0 transparent transparent transparent;
+}
+
+
+.middle-type {
+    margin-top: 2.66667vw;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 92vw;
+    margin: 0 auto;
+}
+.middle-type .car-type {
+    text-align: center;
+    line-height: 6.4vw;
+    margin-right: 2.66667vw;
+    width: 20.93333vw;
+    height: 6.4vw;
+    background: #f5f7fe;
+    border-radius: 4vw;
+    font-size: 3.2vw;
+    font-weight: 400;
+    color: #333;
+    line-height: 4.4vw;
+}

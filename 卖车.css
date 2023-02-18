@@ -1,0 +1,360 @@
+
+
+.topPicture {
+    width: 100%;
+    height: 154px;
+}
+
+.topPicture img {
+    width: 100%;
+}
+
+.sheet,
+.assessment,
+.benefit {
+    width: 92vw;
+    margin: 0 auto;
+    /* background-color: antiquewhite; */
+}
+
+.smallSheet {
+    position: relative;
+    margin-top: -15.73333vw;
+    width: 100%;
+    height: 77.33333vw;
+    background-color: #fff;
+    box-shadow: 0 0 2.66667vw 0 rgb(74 101 172 / 18%);
+    border-radius: 1.33333vw;
+}
+
+.information {
+    display: block;
+    margin-top: 0em;
+}
+
+.name,
+.number,
+.carModel,
+.kilometers,
+.time {
+    padding-left: 4vw;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 15.73333vw;
+}
+
+.nameLeft,
+.numberLeft,
+.carModelLeft,
+.kilometersLeft,
+.timeLeft {
+    -webkit-box-flex: 0;
+    flex: none;
+    box-sizing: border-box;
+    width: 6.2em;
+    margin-right: 50px;
+    color: #646566;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.nameRight,
+.numberRight,
+.carModelRight,
+.kilometersRight,
+.timeRight {
+    overflow: visible;
+}
+
+.Ipt {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.Ipt input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    color: #323233;
+    line-height: inherit;
+    text-align: left;
+    background-color: transparent;
+    border: 0;
+    resize: none;
+    outline: none;
+}
+
+#btn {
+    width: 92vw;
+    height: 12.53333vw;
+    background: linear-gradient(136deg, #618eff, #2567ff);
+    font-size: 4.8vw;
+    border-radius: 0 0 1.86667vw 1.86667vw;
+    border: none;
+    margin-top: -8px;
+}
+
+#btn span {
+    color: #fff;
+}
+
+.btn-content {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.assessmentBox {
+    position: relative;
+    margin: 20vw 0 -13.33333vw 0;
+    width: 92vw;
+    height: 15.73333vw;
+    background: #fff;
+    box-shadow: 0 0.26667vw 2.66667vw 0 rgb(170 170 216 / 40%);
+    border-radius: 1.86667vw;
+}
+
+.assessmentBox img {
+    margin: 5.2vw 1.33333vw 0 12.93333vw;
+    width: 5.33333vw;
+    height: 5.33333vw;
+}
+
+.assessmentBox span {
+    display: inline-block;
+    height: 5.33333vw;
+    font-size: 3.73333vw;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333;
+    line-height: 5.33333vw;
+    vertical-align: super;
+}
+
+.carPic {
+    margin: 0 21.33333vw 0 23.73333vw;
+    width: 46.93333vw;
+    height: 25.6vw;
+}
+
+.benefitText {
+    margin: 24vw 22.4vw 6.4vw 22.66667vw;
+    width: 66.66667vw;
+    height: 6.66667vw;
+    font-size: 4.8vw;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #333;
+    line-height: 6.66667vw;
+}
+
+.advantage {
+    float: left;
+    margin-top: -4vw;
+    width: 91.73333vw;
+    height: 51.86667vw;
+    background: #f5f6fa;
+    border-radius: 1.86667vw;
+    border: 1px solid #f5f6fa;
+}
+
+.advantage img {
+    width: 9.6vw;
+    height: 6.66667vw;
+}
+
+.center {
+    position: absolute;
+    top: 3.86667vw;
+    margin: 0 11.46667vw 0 11.6vw;
+    width: 1px;
+    height: 8vw;
+    background: #d8e3ff;
+}
+
+.numOne,
+.numTwo,
+.numThree {
+    float: left;
+    width: 100%;
+    height: 17.33333vw;
+}
+
+.numOneLeft,
+.numTwoLeft,
+.numThreeLeft {
+    float: left;
+    margin: 5.06667vw 4.8vw 10.66667vw 8.26667vw;
+}
+
+.numOneRight,
+.numTwoRight,
+.numThreeRight {
+    float: left;
+    margin: 4vw 0 0 0;
+    width: 66.66667vw;
+    height: 9.33333vw;
+}
+
+.callNumber {
+    margin: 53.33333vw 32.26667vw 6.66667vw 33.6vw;
+    height: 5.33333vw;
+    font-size: 3.73333vw;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #5685fe;
+    line-height: 5.33333vw;
+}
+
+.question {
+    margin-top: 12vw;
+    display: flex;
+}
+
+.questionLeft {
+    margin-right: 2.66667vw;
+    float: left;
+    width: 1.33333vw;
+    height: 4vw;
+    background: #5685fe;
+}
+
+.questionRight {
+    margin-top: -1.33333vw;
+    display: flex;
+    height: 6.66667vw;
+    font-size: 4.8vw;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+    color: #333;
+    line-height: 6.66667vw;
+}
+
+.material {
+    overflow: hidden;
+    margin: 2.66667vw 0 1.33333vw 0;
+    width: 100%;
+    height: 67.2vw;
+    background: url(./图片/准备哪些资料.png) no-repeat 50%;
+    background-size: cover;
+}
+
+.details {
+    margin-left: 5.06667vw;
+    margin-top: 2.26667vw;
+    width: 82.66667vw;
+    height: 41.06667vw;
+    font-size: 3.2vw;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #525b78;
+    line-height: 5.86667vw;
+}
+
+.procedure {
+    margin-left: 5.06667vw;
+    margin-top: 5.06667vw;
+    height: 6vw;
+    font-size: 4.26667vw;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #3a425e;
+    line-height: 6vw;
+}
+
+.procedureLast {
+    margin-left: 5.06667vw;
+    margin-top: 2.26667vw;
+    width: 82.66667vw;
+    height: 41.06667vw;
+    font-size: 3.2vw;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #525b78;
+    line-height: 5.86667vw;
+}
+
+.second {
+    margin-top: -1.33333vw;
+    background: url(./图片/具体的流程.jpg);
+    background-size: cover;
+}
+
+.lastQuestion {
+    box-shadow: 0 0 2.66667vw 0 rgb(74 101 172 / 18%);
+    margin-bottom: 26.66667vw;
+    background: url(./图片/卖车的好处.jpg) no-repeat 50%;
+    background-size: cover;
+}
+
+.ones {
+    margin-left: 5.06667vw;
+    margin-top: 5.06667vw;
+    height: 6vw;
+    font-size: 4.26667vw;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #3a425e;
+    line-height: 6vw;
+}
+
+.twos {
+    margin-left: 5.06667vw;
+    margin-top: 2.26667vw;
+    width: 82.66667vw;
+    height: 41.06667vw;
+    font-size: 3.2vw;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #525b78;
+    line-height: 5.86667vw;
+}
+
+.need {
+    margin-left: 5.06667vw;
+    margin-top: 5.06667vw;
+    height: 6vw;
+    font-size: 4.26667vw;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #3a425e;
+    line-height: 6vw;
+}
+
+.expense {
+    background: url(./图片/需要什么费用.jpg) no-repeat 50%;
+    background-size: cover;
+    height: 50vw;
+    box-shadow: 0 0 2.66667vw 0 rgb(74 101 172 / 18%);
+}
+
+.expenseOne {
+    margin-left: 5.06667vw;
+    margin-top: 5.06667vw;
+    height: 6vw;
+    font-size: 4.26667vw;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #3a425e;
+    line-height: 6vw;
+}
+
+.expenseTwo {
+    margin-left: 5.06667vw;
+    margin-top: 2.26667vw;
+    width: 82.66667vw;
+    height: 41.06667vw;
+    font-size: 3.2vw;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #525b78;
+    line-height: 5.86667vw;
+}
